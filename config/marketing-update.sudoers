@@ -1,0 +1,4 @@
+# Sudo drop-in file for the Marketing department
+# Allows the execution of system updates without requiring the root password.
+
+%marketing ALL=(ALL) NOPASSWD: /usr/bin/zypper up
