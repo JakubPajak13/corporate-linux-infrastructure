@@ -1,0 +1,12 @@
+# Root crontab schedule for PolMetal server
+
+# 1. Automated Disaster Recovery Backup
+# Archives and compresses the entire /documents directory every night at 2:00 AM.
+0 2 * * * tar -czf /mnt/backup/doc_backup.tar.gz /documents
+
+# 2. Continuous System Auditing
+# Dumps active root processes to an audit file every 5 minutes.
+*/5 * * * * ps -U root > /tmp/audit.proc
+
+# Isolates SSH authentication attempts from global logs every 5 minutes.
+*/5 * * * * grep -a "sshd" /var/log/messages > /tmp/audit.ssh
